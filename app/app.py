@@ -9,20 +9,20 @@ load_dotenv()
 
 app = Flask(__name__)
 
-API_KEY = os.getenv('API_KEY')
-BASE_URL = 'http://dataservice.accuweather.com/currentconditions/v1/'
+API_KEY = os.getenv("API_KEY")
+BASE_URL = "http://dataservice.accuweather.com/currentconditions/v1/"
 
-@app.route('/')
+
+@app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-
-@app.route('/check_weather', methods=['POST'])
+@app.route("/check_weather", methods=["POST"])
 def check_weather():
-    latitude = request.form.get('latitude')
-    longitude = request.form.get('longitude')
-    city = request.form.get('city')
+    latitude = request.form.get("latitude")
+    longitude = request.form.get("longitude")
+    city = request.form.get("city")
 
     location_key = None
 
@@ -35,7 +35,7 @@ def check_weather():
 
     # Если location_key не удалось получить
     if not location_key:
-        return jsonify({'error': 'Failed to retrieve location key'}), 500
+        return jsonify({"error": "Failed to retrieve location key"}), 500
 
     # Запрашиваем данные о погоде с использованием location_key
     weather_url = f"{BASE_URL}{location_key}?apikey={API_KEY}&details=true"
@@ -48,12 +48,15 @@ def check_weather():
         model = WeatherModel()
         model.parse_main_params(weather_data)
         parsed_data = model.weather_params
-        parsed_data['weather_analysis'] = model.check_weather_params()
+        parsed_data["weather_analysis"] = model.check_weather_params()
 
-        return render_template('weather_result.html', weather=parsed_data)
+        return render_template("weather_result.html", weather=parsed_data)
     else:
-        return jsonify({'error': 'Failed to retrieve weather data'}), response.status_code
+        return (
+            jsonify({"error": "Failed to retrieve weather data"}),
+            response.status_code,
+        )
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=False)
