@@ -1,0 +1,18 @@
+<div>
+    <h2>Weather Analysis:</h2>
+    <p>Temperature: {{ weather['Temperature (°C)'] }} °C</p>
+    <p>Apparent Temperature: {{ weather['Apparent Temperature (°C)'] }} °C</p>
+    <p>Dew Point: {{ weather['Dew Point (°C)'] }} °C</p>
+    <p>Wind Speed: {{ weather['Wind Speed (km/h)'] }} km/h</p>
+    <p>Wind Direction: {{ weather['Wind Direction'] }}</p>
+    <p>Humidity: {{ weather['Humidity (%)'] }} %</p>
+    <p>Precipitation Probability: {{ weather['Precipitation Probability (%)'] }} %</p>
+    <p>Cloud Cover: {{ weather['Cloud Cover (%)'] }} %</p>
+    <p>Visibility: {{ weather['Visibility (km)'] }} km</p>
+    <p>Pressure: {{ weather['Pressure (mb)'] }} mb</p>
+    <p>UV Index: {{ weather['UV Index'] }}</p>
+    <p>Weather Description: {{ weather['Weather Description'] }}</p>
+    
+    <h3>Weather Analysis:</h3>
+    <p>{{ weather['weather_analysis'] | join(', ') }}</p>
+</div>

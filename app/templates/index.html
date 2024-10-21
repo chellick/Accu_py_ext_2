@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Check</title>
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); 
+
+            let formData = new FormData(event.target);
+
+            fetch('/check_weather', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text()) 
+            .then(html => {
+                document.getElementById('weatherResult').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('weatherResult').innerHTML = "<p>Failed to retrieve weather data</p>";
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Check Weather Conditions</h1>
+    <form id="weatherForm" onsubmit="submitForm(event)">
+        <label for="city">City Name:</label>
+        <input type="text" id="city" name="city"><br><br>
+
+        <p>Or enter coordinates (optional):</p>
+        <label for="latitude">Latitude:</label>
+        <input type="number" step="any" id="latitude" name="latitude"><br><br>
+
+        <label for="longitude">Longitude:</label>
+        <input type="number" step="any" id="longitude" name="longitude"><br><br>
+
+        <button type="submit">Check Weather</button>
+    </form>
+
+    <div id="weatherResult"></div>
+</body>
+</html>
