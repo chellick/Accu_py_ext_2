@@ -34,25 +34,3 @@ def get_location_key_by_city(city_name, api_key):
             return city_data[0]["Key"]  # Берем первый результат и получаем ключ
     return None
 
-
-# working connection
-
-# if __name__ == '__main__':
-#     latitude = 35.6895
-#     longitude = 139.6917
-
-#     API_KEY = os.getenv('API_KEY')
-#     location_key = get_location_key_by_geoposition(latitude, longitude, API_KEY)
-
-#     if location_key:
-#         print(f"Location key for latitude {latitude} and longitude {longitude}: {location_key}")
-
-
-# if __name__ == '__main__':
-#     latitude = 32.
-#     longitude = 11.
-
-#     location_key = get_location_key_by_geoposition(latitude, longitude)
-
-#     if location_key:
-#         print(f"Location key for latitude {latitude} and longitude {longitude}: {location_key}")

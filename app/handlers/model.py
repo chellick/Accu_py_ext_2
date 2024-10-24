@@ -77,6 +77,7 @@ class WeatherModel:
 
     def check_weather_params(self):
         """Анализ погоды на основе загруженных параметров"""
+        
         if not self.weather_params:
             return {"error": "No weather parameters loaded"}
 
